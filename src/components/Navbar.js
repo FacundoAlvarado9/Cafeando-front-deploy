@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 class Navbar extends React.Component {
     render(){
@@ -7,8 +7,8 @@ class Navbar extends React.Component {
             <>
                 <div className="hola">
                 <nav className="navbar">
-                    <NavLink to="/home">Home</NavLink>
-                    <NavLink to="/tostadurias">Tostadurías</NavLink>                                                  
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="tostadurias">Tostadurías</NavLink>                                                  
                 </nav>
                 </div> 
             </>
