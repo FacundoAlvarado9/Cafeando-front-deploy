@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import { getVariedadesFromTostaduria } from "network/lib/variedades"
 import VariedadCard from 'components/cards/VariedadCard'
+import Search from 'components/Search'
 import { getSingleTostaduria } from 'network/lib/tostadurias'
 
 export default function SingleTostaduria() {
@@ -36,18 +37,18 @@ export default function SingleTostaduria() {
   //   t()
   // }, [])
 
-  const changeSearchString = (e) => {
+  const changeSearchString = (newSearchString) => {
     setFilters(prevFilters => ({
       ...prevFilters,
-      searchString: e.target.value
+      searchString: newSearchString
     }))
   }
 
   
 
   return(
-    <div>
-     <input value={filters["searchString"]} onChange={changeSearchString}  type="text" name="genre" placeholder="searchString"/>
+    <div>    
+     <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="searchString"/>
       <h1>{ tostaduria.nombre }</h1>
       <ul>
         {variedades.map(variedad => {          
