@@ -1,24 +1,39 @@
 import React from 'react'
 
 import {InputText} from 'primereact/inputtext'
+import {Button} from 'primereact/button'
 
 class Search extends React.Component {
 
-    handleChange = event =>{
-        this.props.onChange(event.target.value)
+    state = {
+        searchString: ""
+    }
+
+    handleChange = event =>{        
+        this.props.onChange(this.state.searchString)
+    }
+
+    handleKeyDown = event =>{
+        if(event.key === 'Enter' ){
+            alert("Holaa")
+            this.handleChange()
+        }
     }
 
     render(){
         return(
             <>
-            <span className="p-input-icon-left">
-                <i className="pi pi-search" />
+
+            <div className="p-inputgroup">
+                <Button label="Buscar" icon="pi pi-search" onClick={this.handleChange}/>
                 <InputText
                     id={this.props.id} 
-                    value={this.props.value} 
+                    defaultValue={this.props.value} 
                     placeholder={this.props.placeholder}
-                    onChange={this.handleChange}/>
-            </span>                
+                    onChange={(e) => this.setState({ searchString: e.target.value})}
+                    onKeyDown={this.handleKeyDown}
+                    />
+            </div>                         
             </>
                  
         )
