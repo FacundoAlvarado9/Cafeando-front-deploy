@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {InputText} from 'primereact/inputtext'
+
 class Search extends React.Component {
 
     handleChange = event =>{
@@ -9,12 +11,14 @@ class Search extends React.Component {
     render(){
         return(
             <>
-                <input type="text" 
-                name={this.props.name} 
-                id={this.props.id} 
-                value={this.props.value} 
-                placeholder={this.props.placeholder}
-                onChange={this.handleChange}/>
+            <span className="p-input-icon-left">
+                <i className="pi pi-search" />
+                <InputText
+                    id={this.props.id} 
+                    value={this.props.value} 
+                    placeholder={this.props.placeholder}
+                    onChange={this.handleChange}/>
+            </span>                
             </>
                  
         )

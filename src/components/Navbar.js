@@ -5,7 +5,7 @@ class Navbar extends React.Component {
     render(){
         return(
             <>
-                <div className="hola">
+                <div className="flex">
                 <nav className="navbar">
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="tostadurias">Tostadurías</NavLink>                                                  

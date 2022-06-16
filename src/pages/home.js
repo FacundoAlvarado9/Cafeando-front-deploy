@@ -1,6 +1,11 @@
 import React from 'react'
 
 class Home extends React.Component {
+
+    componentDidMount(){
+        document.title = "Cafeando"
+    }
+
     render(){
         return(<>
         <h1>Bienvenidos 👋☕</h1>

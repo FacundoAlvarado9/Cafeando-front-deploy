@@ -46,15 +46,19 @@ export default function SingleTostaduria() {
   }
 
   return(
-    <div>    
-     <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="searchString"/>
-     <OrigenesDropdown onChange={changeOrigenFilter} />
-      <h1>{ tostaduria.nombre }</h1>
-      <ul>
-        {variedades.map(variedad => {          
-          return <li key={variedad.id}>{variedad.nombre}</li>
-        })}
-      </ul>
+    <div className='flex flex-column'>
+      <div className='flex flex-row'>
+        <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="searchString"/>
+        <OrigenesDropdown onChange={changeOrigenFilter} />
+      </div>
+      <div className='flex flex-column'>
+        <h1>{ tostaduria.nombre }</h1>
+        <div className="grid gap-3 justify-content-center">
+            {variedades.map(variedad => {          
+              return <VariedadCard variedad={variedad} key={variedad["id"]}/>
+            })}
+        </div> 
+      </div>           
     </div>
   )
 }

@@ -7,7 +7,7 @@ class Layout extends React.Component {
 
     render(){
         return(<>            
-            <div className="content">   
+            <div className="content flex flex-column">   
                 <Navbar />
                 <main>
                     <Outlet />  
