@@ -7,3 +7,7 @@ export async function getAllTostadurias(){
 export async function getSingleTostaduria(tost_id){
   return await axiosClient.get('/tostadurias/' + tost_id)
 }
+
+export async function getSucursalesFromSingleTostaduria(tost_id){
+  return await axiosClient.get('/tostadurias/' + tost_id + '/sucursales')
+}

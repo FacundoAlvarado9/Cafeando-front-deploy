@@ -4,15 +4,17 @@ import { useParams, Link } from 'react-router-dom'
 import { getVariedadesFromTostaduria } from "network/lib/variedades"
 import VariedadCard from 'components/cards/VariedadCard'
 import Search from 'components/Search'
-import { getSingleTostaduria } from 'network/lib/tostadurias'
+import { getSingleTostaduria, getSucursalesFromSingleTostaduria } from 'network/lib/tostadurias'
 import OrigenesDropdown from 'components/OrigenesDropdown'
 
 import { Button } from 'primereact/button'
+import SucursalCard from 'components/cards/SucursalCard'
 
 export default function SingleTostaduria() {
   
   const [tostaduria, setTostaduria] = useState([])
   const [variedades, setVariedades] = useState([])
+  const [sucursales, setSucursales] = useState([])
 
   const [filters, setFilters] = useState({
     searchString: "",
@@ -24,6 +26,10 @@ export default function SingleTostaduria() {
   useEffect(() => {         
     getSingleTostaduria(tost_id).then(res => {
       setTostaduria(res.data["results"][0])
+    }) 
+
+    getSucursalesFromSingleTostaduria(tost_id).then(res => {
+      setSucursales(res.data["results"])
     }) 
   }, [])
 
@@ -61,7 +67,15 @@ export default function SingleTostaduria() {
               return <VariedadCard variedad={variedad} key={variedad["id"]}/>
             })}
         </div> 
-      </div>           
+      </div>    
+      <div className='flex flex-column'>
+        <h2>Sucursales</h2>
+        <div className="grid gap-3 justify-content-center">
+            {sucursales.map(sucursal => {          
+              return <SucursalCard sucursal={sucursal} key={sucursal["id"]}/>
+            })}
+        </div> 
+      </div>       
     </div>
   )
 }
