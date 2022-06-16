@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import { getVariedadesFromTostaduria } from "network/lib/variedades"
 import VariedadCard from 'components/cards/VariedadCard'
 import Search from 'components/Search'
 import { getSingleTostaduria } from 'network/lib/tostadurias'
 import OrigenesDropdown from 'components/OrigenesDropdown'
+
+import { Button } from 'primereact/button'
 
 export default function SingleTostaduria() {
   
@@ -48,7 +50,8 @@ export default function SingleTostaduria() {
   return(
     <div className='flex flex-column'>
       <div className='flex flex-row'>
-        <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="searchString"/>
+        <Link to="/tostadurias"><Button icon="pi pi-chevron-left" label="Volver"/></Link>
+        <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
         <OrigenesDropdown onChange={changeOrigenFilter} />
       </div>
       <div className='flex flex-column'>
