@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom'
 
 class VariedadCard extends React.Component {
 
-    
-
     render(){
         const header = <img src={this.props.variedad["imagen_url"]} alt="Variedad preview" />
         return(
@@ -16,7 +14,7 @@ class VariedadCard extends React.Component {
                     subTitle={this.props.variedad["descripcion"]} 
                     id={this.props.variedad["id"]}
                     header={header}
-                    className="w-max col-12">
+                    className="max-w-20rem col-12">
 
                     { this.props.variedad["origenes"].map(origen =>
                         <Link to="http://google.com"><Chip label={origen.nombre} key={origen.id}/></Link>

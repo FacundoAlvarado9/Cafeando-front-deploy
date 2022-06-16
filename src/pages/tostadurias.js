@@ -17,9 +17,9 @@ class Tostadurias extends React.Component {
     render(){
         return(<>
         <h1>Tostadurias 🏪</h1>
-        <ul>
+        <div className='grid gap-3 justify-content-center'>
           {this.state.tostadurias.map(tostaduria => <TostaduriaCard id={tostaduria.id} key={tostaduria.id} nombre={tostaduria.nombre}/>)}
-        </ul>
+        </div>
         </>)
     }
 }
