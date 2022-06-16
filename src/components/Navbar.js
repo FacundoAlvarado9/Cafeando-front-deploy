@@ -8,7 +8,8 @@ class Navbar extends React.Component {
                 <div className="flex">
                 <nav className="navbar">
                     <NavLink to="/">Home</NavLink>
-                    <NavLink to="tostadurias">Tostadurías</NavLink>                                                  
+                    <NavLink to="tostadurias">Tostadurías</NavLink>
+                    <NavLink to="origenes">Orígenes</NavLink> 
                 </nav>
                 </div> 
             </>

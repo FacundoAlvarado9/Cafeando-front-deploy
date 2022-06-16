@@ -15,7 +15,6 @@ class Search extends React.Component {
 
     handleKeyDown = event =>{
         if(event.key === 'Enter' ){
-            alert("Holaa")
             this.handleChange()
         }
     }
