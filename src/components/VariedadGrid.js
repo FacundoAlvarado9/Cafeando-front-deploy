@@ -16,7 +16,7 @@ class VariedadGrid extends React.Component {
                     })}            
                 </div>
                 <div>
-                    <Paginator first={this.props.startIndex} rows={this.props.pageSize} totalRecords={this.props.totalCount} onPageChange={this.props.onPageChange}></Paginator>
+                    <Paginator first={this.props.startIndex} rows={this.props.pageSize} totalRecords={this.props.totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={this.props.onPageChange}></Paginator>
                 </div>
             </div>
         )
