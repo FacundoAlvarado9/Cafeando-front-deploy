@@ -17,7 +17,6 @@ export default function SingleTostaduria() {
   const [variedades, setVariedades] = useState([])
   const [sucursales, setSucursales] = useState([])
 
-  const [pageCount, setPageCount] = useState(0)
   const [totalCount, setTotalCount] = useState(0)
 
   const [filters, setFilters] = useState({
@@ -29,7 +28,7 @@ export default function SingleTostaduria() {
 
   const { tost_id }= useParams()
 
-  useEffect(() => {         
+  useEffect(() => {
     getSingleTostaduria(tost_id).then(res => {
       setTostaduria(res.data["results"][0])
     }) 
@@ -37,15 +36,14 @@ export default function SingleTostaduria() {
     getSucursalesFromSingleTostaduria(tost_id).then(res => {
       setSucursales(res.data["results"])
     }) 
-  }, [])
+  }, [tost_id])
 
   useEffect(() => {         
     getVariedadesFromTostaduria(tost_id, filters).then(resVariedades => {
       setVariedades(resVariedades.data["results"])
       setTotalCount(resVariedades.data["totalCount"])
-      setPageCount(Math.ceil(resVariedades.data["totalCount"] / filters["pageSize"]))
     })    
-  }, [filters])
+  }, [filters, tost_id])
 
   const handlePageClick = (event) => {
     setFilters({
