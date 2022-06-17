@@ -28,7 +28,7 @@ class TostaduriaDropdown extends React.Component {
     render(){
         return(
             <>                
-            <Dropdown optionLabel="nombre" optionValue="id" value={this.state.tostaduria} options={this.state.tostadurias} onChange={(e) => this.handleChange(e.value)} placeholder="Filtrar por tostaduria"/>
+            <Dropdown showClear optionLabel="nombre" optionValue="id" value={this.state.tostaduria} options={this.state.tostadurias} onChange={(e) => this.handleChange(e.value)} placeholder="Filtrar por tostaduria"/>
             </>
                  
         )

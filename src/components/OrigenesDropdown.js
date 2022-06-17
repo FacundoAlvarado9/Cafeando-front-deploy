@@ -28,7 +28,7 @@ class OrigenesDropdown extends React.Component {
     render(){
         return(
             <>                
-            <Dropdown optionLabel="nombre" optionValue="id" value={this.state.origen} options={this.state.origenes} onChange={(e) => this.handleChange(e.value)} placeholder="Filtrar por origen"/>
+            <Dropdown showClear optionLabel="nombre" optionValue="id" value={this.state.origen} options={this.state.origenes} onChange={(e) => this.handleChange(e.value)} placeholder="Filtrar por origen"/>
             </>
                  
         )
