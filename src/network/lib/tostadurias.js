@@ -1,7 +1,7 @@
 import axiosClient from "../apiClient"
 
-export async function getAllTostadurias(){
-  return await axiosClient.get('/tostadurias')
+export async function getAllTostadurias(qParams){
+  return await axiosClient.get('/tostadurias', { params: qParams })
 }
 
 export async function getSingleTostaduria(tost_id){
