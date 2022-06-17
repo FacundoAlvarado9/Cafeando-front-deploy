@@ -9,6 +9,7 @@ import OrigenesDropdown from 'components/OrigenesDropdown'
 
 import { Button } from 'primereact/button'
 import SucursalCard from 'components/cards/SucursalCard'
+import VariedadGrid from 'components/VariedadGrid'
 
 export default function SingleTostaduria() {
   
@@ -16,7 +17,12 @@ export default function SingleTostaduria() {
   const [variedades, setVariedades] = useState([])
   const [sucursales, setSucursales] = useState([])
 
+  const [pageCount, setPageCount] = useState(0)
+  const [totalCount, setTotalCount] = useState(0)
+
   const [filters, setFilters] = useState({
+    pageSize: 5,
+    startIndex: 0,
     searchString: "",
     origen: null
   })
@@ -36,8 +42,18 @@ export default function SingleTostaduria() {
   useEffect(() => {         
     getVariedadesFromTostaduria(tost_id, filters).then(resVariedades => {
       setVariedades(resVariedades.data["results"])
+      setTotalCount(resVariedades.data["totalCount"])
+      setPageCount(Math.ceil(resVariedades.data["totalCount"] / filters["pageSize"]))
     })    
   }, [filters])
+
+  const handlePageClick = (event) => {
+    setFilters({
+      ...filters,
+      startIndex: event.first,
+      pageSize: event.rows
+    })
+  }
 
   const changeSearchString = (newSearchString) => {
     setFilters(prevFilters => ({
@@ -52,6 +68,18 @@ export default function SingleTostaduria() {
       origen: newOrigen
     }))
   }
+  console.log("total count: " + totalCount)
+
+  const backup = <>
+    <div className='flex flex-column'>
+            <h1>{ tostaduria.nombre }</h1>
+            <div className="grid gap-3 justify-content-center">
+                {variedades.map(variedad => {          
+                  return <VariedadCard variedad={variedad} key={variedad["id"]}/>
+                })}
+            </div> 
+          </div> 
+  </>
 
   return(
     <div className='flex flex-column'>
@@ -60,14 +88,13 @@ export default function SingleTostaduria() {
         <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
         <OrigenesDropdown onChange={changeOrigenFilter} />
       </div>
-      <div className='flex flex-column'>
-        <h1>{ tostaduria.nombre }</h1>
-        <div className="grid gap-3 justify-content-center">
-            {variedades.map(variedad => {          
-              return <VariedadCard variedad={variedad} key={variedad["id"]}/>
-            })}
-        </div> 
-      </div>    
+         <VariedadGrid variedades={variedades}
+              titulo={ tostaduria["nombre"] }
+              startIndex={ filters["startIndex"] }
+              pageSize={ filters["pageSize"] }
+              totalCount={totalCount}
+              onPageChange={handlePageClick}
+         />
       <div className='flex flex-column'>
         <h2>Sucursales</h2>
         <div className="grid gap-3 justify-content-center">
