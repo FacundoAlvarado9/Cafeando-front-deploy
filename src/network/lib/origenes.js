@@ -5,5 +5,5 @@ export async function getAllOrigenes(){
 }
 
 export async function getSingleOrigin(id){
-  return await axiosClient.get('/origen/' + id)
+  return await axiosClient.get('/origenes/' + id)
 }
