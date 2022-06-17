@@ -9,16 +9,27 @@ class VariedadCard extends React.Component {
 
     render(){
         const header = <img src={this.props.variedad["imagen_url"]} alt="Variedad preview" />
+        const tostaduria = <Link to={"/tostadurias/" + this.props.variedad["tostaduria"]["id"]}>{this.props.variedad["tostaduria"]["nombre"]}</Link>
         return(
             <Card title={this.props.variedad["nombre"]} 
-                    subTitle={this.props.variedad["descripcion"]} 
+                    subTitle={tostaduria} 
                     id={this.props.variedad["id"]}
                     header={header}
                     className="max-w-20rem col-12">
 
-                    { this.props.variedad["origenes"].map(origen =>
-                        <Link to="http://google.com"><Chip label={origen.nombre} key={origen.id}/></Link>
-                    ) }
+                    <div className='flex flex-column '>
+                        
+                        <div className="overflow-scroll">
+                            <p>{this.props.variedad["descripcion"]}</p>
+                        </div>
+
+                        <div className="flex flex-row justify-content-center">
+                            { this.props.variedad["origenes"].map(origen =>
+                                <Link to={"/origenes/" + origen.id} key={origen.id}><Chip label={origen.nombre} /></Link>
+                            ) }
+                        </div>
+                    
+                    </div>                    
 
             </Card>
         )
