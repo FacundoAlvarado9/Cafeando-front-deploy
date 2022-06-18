@@ -10,6 +10,7 @@ import { getSingleOrigin } from 'network/lib/origenes'
 import TostaduriaDropdown from 'components/TostaduriasDropdown'
 import { Paginator } from 'primereact/paginator';
 import VariedadGrid from 'components/VariedadGrid'
+import Error from 'components/Error'
 
 export default function SingleOrigin() {
   
@@ -121,7 +122,7 @@ export default function SingleOrigin() {
   if(!errored){
     result = showVariedades        
   } else{
-    result = <p>Upps!</p>
+    result = <Error volver="/origenes"/>
   }
 
   console.log("startIndex: " + filters["startIndex"])
