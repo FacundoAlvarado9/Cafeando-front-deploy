@@ -81,11 +81,18 @@ export default function SingleTostaduria() {
 
   return(
     <div className='flex flex-column'>
-      <div className='flex flex-row'>
-        <Link to="/tostadurias"><Button icon="pi pi-chevron-left" label="Volver"/></Link>
-        <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
-        <OrigenesDropdown onChange={changeOrigenFilter} />
+      <div className='flex flex-column md:flex-row gap-0 md:gap-3 justify-content-center align-items-center'>
+        <div className="flex">
+          <Link to="/tostadurias"><Button icon="pi pi-chevron-left" label="Volver"/></Link>
+        </div>
+        <div className="flex">
+          <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
+        </div>
+        <div className="flex">
+          <OrigenesDropdown onChange={changeOrigenFilter} />
+        </div>                    
       </div>
+
          <VariedadGrid variedades={variedades}
               titulo={ tostaduria["nombre"] }
               startIndex={ filters["startIndex"] }

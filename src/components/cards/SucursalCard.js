@@ -1,9 +1,6 @@
 import React from 'react'
 
 import { Card } from 'primereact/card'
-import { Chip } from 'primereact/chip'
-import card from './card.module.css'
-import { Link } from 'react-router-dom'
 
 class SucursalCard extends React.Component {
 

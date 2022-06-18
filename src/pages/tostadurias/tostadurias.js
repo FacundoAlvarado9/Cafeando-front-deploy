@@ -48,7 +48,7 @@ export default function Tostadurias(){
       <div className="flex justify-content-center">
         <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
       </div>
-      <div className='flex grid gap-3 justify-content-center'> 
+      <div className='flex flex-column grid gap-3 justify-content-center'> 
         {tostadurias.map(tostaduria => <TostaduriaCard id={tostaduria.id} key={tostaduria.id} nombre={tostaduria.nombre}/>)}        
       </div>
       <div className="flex justify-content-center">

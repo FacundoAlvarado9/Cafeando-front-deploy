@@ -44,7 +44,7 @@ export default function Origenes(){
       <div className="flex justify-content-center">
         <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
       </div>
-      <div className='grid flex gap-3 justify-content-center'>
+      <div className='grid flex flex-column gap-3 justify-content-center'>
         {origenes.map(origen => <OrigenCard id={origen.id} key={origen.id} origen={origen}/>)}        
       </div>
       <div className='flex justify-content-center'>

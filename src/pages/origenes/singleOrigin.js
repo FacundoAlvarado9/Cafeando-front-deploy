@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { useParams, Link } from 'react-router-dom'
 
-import { getVariedadesFromOrigen, getVariedadesFromTostaduria } from "network/lib/variedades"
+import { getVariedadesFromOrigen } from "network/lib/variedades"
 import VariedadCard from 'components/cards/VariedadCard'
 import Search from 'components/Search'
-import OrigenesDropdown from 'components/OrigenesDropdown'
-import ReactPaginate from 'react-paginate';
 
 import { Button } from 'primereact/button'
 import { getSingleOrigin } from 'network/lib/origenes'
@@ -82,10 +80,16 @@ export default function SingleOrigin() {
 
   const showVariedades = <>
       <div className='flex flex-column'>    
-        <div className='flex flex-row'>
-          <Link to="/origenes"><Button icon="pi pi-chevron-left" label="Volver"/></Link>
-          <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
-          <TostaduriaDropdown onChange={changeTostaduriaFilter} />
+        <div className='flex flex-column md:flex-row gap-0 md:gap-3 justify-content-center align-items-center'>
+          <div className="flex">
+            <Link to="/origenes"><Button icon="pi pi-chevron-left" label="Volver"/></Link>
+          </div>
+          <div className="flex">
+            <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
+          </div>
+          <div className="flex">
+            <TostaduriaDropdown onChange={changeTostaduriaFilter} />
+          </div>                            
         </div>
         <VariedadGrid variedades={variedades} 
             titulo={ origen["nombre"] } 
