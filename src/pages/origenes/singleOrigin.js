@@ -11,7 +11,6 @@ import TostaduriaDropdown from 'components/TostaduriasDropdown'
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
 import TiposDropdown from 'components/TiposDropdown'
-import Loading from 'components/Loading'
 
 export default function SingleOrigin() {
   
@@ -48,7 +47,7 @@ export default function SingleOrigin() {
 
   useEffect(() => {
     setLoadingVariedades(true)
-    
+
     getVariedadesFromOrigen(origen_id, filters).then(resVariedades => {
       setVariedades(resVariedades.data["results"])
       setTotalCount(resVariedades.data["totalCount"])
