@@ -31,7 +31,11 @@ class Home extends React.Component {
                     <p>Pero también así se le llama a la cultura de beber café <b>consciente de su cadena de producción</b>.</p>
                     <p>Esto es, de variables como su origen, especie, tratamiento post-recolección, grado de tostado, método de preparación, etc.</p>
                 </div>
-            </div>            
+            </div>
+            <div className="footer flex flex-row gap-5   justify-content-center align-items-center">
+                <p>Creado por Facundo Alvarado para IAW @ UNS 2022</p>
+                <p>Ilustraciones de Icons8</p>
+            </div>          
         </>)
     }
 }

@@ -24,6 +24,17 @@
     line-height: 2.5;
 }
 
+.footer {
+    height: 4em;
+    background: #FA2B00;
+    padding: 1.5em;
+    margin-bottom: 0px;
+}
+
+.footer p{
+    color: white;
+}
+
 .centered {
     position: absolute;
     top: 50%;
