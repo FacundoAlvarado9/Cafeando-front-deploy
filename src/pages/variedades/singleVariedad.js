@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 
 import { getSingleVariedad } from 'network/lib/variedades'
 
@@ -9,7 +9,7 @@ import './variedad.css'
 import { Button } from 'primereact/button'
 import Error from 'components/Error'
 
-export default function SingleVariedad(){
+export default function SingleVariedad(props){
 
     const [variedad, setVariedad] = useState({ 
         tipo: { nombre: "" }, 
@@ -28,7 +28,13 @@ export default function SingleVariedad(){
         })
     }, [variedad_id])
 
+    const navigate = useNavigate()
+
     const mostrarVariedad = <>
+    <div className="flex flex-column">
+        <div className="flex justify-content-start link">
+            <Button onClick={() => navigate(-1)} label="Volver"/>
+        </div>
         <div className="flex flex-column md:flex-row justify-content-center gap-5">
             <div className="imagen flex justify-content-center">
                 <Image src={variedad["imagen_url"]} preview={true} />
@@ -40,10 +46,11 @@ export default function SingleVariedad(){
                 <div className="flex flex-column gap-3">                    
                     <Link to={"/tostadurias/" + variedad["tostaduria"]["id"]}>{variedad["tostaduria"]["nombre"]}</Link>
                     <OrigenesChips variedad={variedad} />
-                    <a href={variedad["url"]} target="_blank" rel="noreferrer"><Button label="Ver en su sitio"/></a>
+                    <a href={variedad["url"]} target="_blank" rel="noreferrer" className="link"><Button label="Ver en su sitio"/></a>
                 </div>                
             </div> 
         </div>
+    </div>        
     </>
 
     let result
