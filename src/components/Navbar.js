@@ -7,23 +7,20 @@ class Navbar extends React.Component {
     render(){
         return(
             <>
-                <div className="navbar flex align-items-center justify-content-between">
-                    <div className="title">
-                        <p>Cafeando</p>
+                <div className="navbar flex flex-column md:flex-row md:rojo align-items-center justify-content-between">
+                    <div className="flex title">
+                        <NavLink className="navLink" to="/"><p>Cafeando</p></NavLink> 
                     </div>
-                    <div className="links">
+                    <div className="flex links">
                         <nav className="flex nav-navbar gap-3">
                             <div className='flex'>
-                                <NavLink className="link" to="/">Home</NavLink>                                
-                            </div>
-                            <div className='flex'>
-                                <NavLink className="link" to="variedades">Variedades</NavLink> 
+                                <NavLink className="navLink" to="variedades">Variedades</NavLink> 
                             </div>  
                             <div className='flex'>
-                                <NavLink className="link" to="tostadurias">Tostadurías</NavLink>
+                                <NavLink className="navLink" to="tostadurias">Tostadurías</NavLink>
                             </div>
                             <div className='flex'>
-                                <NavLink className="link" to="origenes">Orígenes</NavLink> 
+                                <NavLink className="navLink" to="origenes">Orígenes</NavLink> 
                             </div>                                                    
                         </nav>
                     </div>                    

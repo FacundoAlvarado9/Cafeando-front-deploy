@@ -4,6 +4,10 @@ export async function getAllVariedades(qParams){
   return await axiosClient.get('/variedades/', { params: qParams })
 }
 
+export async function getSingleVariedad(id, qParams){
+  return await axiosClient.get('/variedades/' + id, { params: qParams })
+}
+
 export async function getVariedadesFromTostaduria(id, qParams){
   return await axiosClient.get('/tostadurias/' + id + '/variedades', { params: qParams })
 }

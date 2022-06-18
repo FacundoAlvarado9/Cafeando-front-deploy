@@ -9,6 +9,7 @@ import Origenes from 'pages/origenes/origenes'
 import SingleOrigin from 'pages/origenes/singleOrigin'
 import NotFound from 'pages/NotFound'
 import Variedades from 'pages/variedades/variedades'
+import SingleVariedad from 'pages/variedades/singleVariedad'
 
 const Routers = () => {
     return(
@@ -16,11 +17,12 @@ const Routers = () => {
             <Route path="/" element={ <Layout/> }>
                 <Route index element={ <Home/> } />
                 <Route path='*' element={<NotFound/>} />
-                <Route path="variedades" element={ <Variedades /> } /> 
+                <Route path="variedades" element={ <Variedades /> } />
+                <Route path="variedades/:variedad_id" element={ <SingleVariedad /> } /> 
                 <Route path="tostadurias" element={ <Tostadurias /> } />            
-                <Route path="tostadurias/:tost_id" element={ <SingleTostaduria nombre="holiwis"/> } />
+                <Route path="tostadurias/:tost_id" element={ <SingleTostaduria/> } />
                 <Route path="origenes" element={ <Origenes /> } />
-                <Route path="origenes/:origen_id" element={ <SingleOrigin nombre="holiwis"/> } />
+                <Route path="origenes/:origen_id" element={ <SingleOrigin/> } />
             </Route>            
         </Routes>    
     )
