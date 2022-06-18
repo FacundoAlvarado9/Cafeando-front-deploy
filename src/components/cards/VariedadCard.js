@@ -18,6 +18,9 @@ class VariedadCard extends React.Component {
                     className="max-w-20rem col-12">
 
                     <div className='flex flex-column '>
+                        <div className="flex justify-content-center">
+                            <p><i>{this.props.variedad["tipo"]["nombre"]}</i></p>
+                        </div>
                         
                         <div className="overflow-scroll">
                             <p>{this.props.variedad["descripcion"]}</p>
