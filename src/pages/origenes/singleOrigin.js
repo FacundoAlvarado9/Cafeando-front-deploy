@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import { getVariedadesFromOrigen } from "network/lib/variedades"
-import VariedadCard from 'components/cards/VariedadCard'
-import Search from 'components/Search'
+import { getSingleOrigin } from 'network/lib/origenes'
 
 import { Button } from 'primereact/button'
-import { getSingleOrigin } from 'network/lib/origenes'
+
+import Search from 'components/Search'
 import TostaduriaDropdown from 'components/TostaduriasDropdown'
-import { Paginator } from 'primereact/paginator';
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
 import TiposDropdown from 'components/TiposDropdown'
@@ -18,7 +17,6 @@ export default function SingleOrigin() {
   const [origen, setOrigen] = useState({})
   const [variedades, setVariedades] = useState([])
 
-  const [pageCount, setPageCount] = useState(0)
   const [totalCount, setTotalCount] = useState(0)
 
   const [filters, setFilters] = useState({
@@ -45,7 +43,6 @@ export default function SingleOrigin() {
     getVariedadesFromOrigen(origen_id, filters).then(resVariedades => {
       setVariedades(resVariedades.data["results"])
       setTotalCount(resVariedades.data["totalCount"])
-      setPageCount(Math.ceil(resVariedades.data["totalCount"] / filters["pageSize"]))
     }).catch((error) => {
       setErrored(true)
     })

@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import { getVariedadesFromTostaduria } from "network/lib/variedades"
-import VariedadCard from 'components/cards/VariedadCard'
-import Search from 'components/Search'
 import { getSingleTostaduria, getSucursalesFromSingleTostaduria } from 'network/lib/tostadurias'
-import OrigenesDropdown from 'components/OrigenesDropdown'
 
 import { Button } from 'primereact/button'
+
+import Search from 'components/Search'
+import OrigenesDropdown from 'components/OrigenesDropdown'
 import SucursalCard from 'components/cards/SucursalCard'
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
