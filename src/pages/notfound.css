@@ -1,0 +1,8 @@
+.error {
+    font-size: 4vmax;
+}
+
+.error img{
+    width: 100%;
+    max-width: 40vmax;
+}

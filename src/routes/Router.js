@@ -2,17 +2,19 @@ import React from 'react'
 import {Routes, Route} from 'react-router-dom'
 
 import Home from 'pages/home'
-import Tostadurias from 'pages/tostadurias'
+import Tostadurias from 'pages/tostadurias/tostadurias'
 import SingleTostaduria from 'pages/tostadurias/singleTostaduria'
 import Layout from 'components/Layout'
 import Origenes from 'pages/origenes/origenes'
 import SingleOrigin from 'pages/origenes/singleOrigin'
+import NotFound from 'pages/NotFound'
 
 const Routers = () => {
     return(
-        <Routes>
+        <Routes>            
             <Route path="/" element={ <Layout/> }>
                 <Route index element={ <Home/> } />
+                <Route path='*' element={<NotFound/>} />
                 <Route path="tostadurias" element={ <Tostadurias /> } />            
                 <Route path="tostadurias/:tost_id" element={ <SingleTostaduria nombre="holiwis"/> } />
                 <Route path="origenes" element={ <Origenes /> } />
