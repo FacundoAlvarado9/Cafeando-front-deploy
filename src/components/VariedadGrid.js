@@ -8,11 +8,11 @@ class VariedadGrid extends React.Component {
 
     render(){
         let renderVariedades = (variedades) => {
-            return variedades.map(variedad => renderVariedad(variedad))
+            return variedades.map((variedad, i) => renderVariedad(variedad, i))
         }
 
-        let renderVariedad = (variedad) => {
-            return(<><VariedadCard variedad={variedad} key={variedad["id"]}/></>)
+        let renderVariedad = (variedad, i) => {
+            return(<VariedadCard variedad={variedad} key={i}/>)
         }
 
         return(
@@ -23,7 +23,7 @@ class VariedadGrid extends React.Component {
                     {this.props.variedades.length === 0 ? (<NoResults />) : renderVariedades(this.props.variedades)}            
                 </div>
                 <div className='flex justify-content-center'>
-                    <Paginator first={this.props.startIndex} rows={this.props.pageSize} totalRecords={this.props.totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={this.props.onPageChange}></Paginator>
+                    <Paginator  first={this.props.startIndex} rows={this.props.pageSize} totalRecords={this.props.totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={this.props.onPageChange}></Paginator>
                 </div>
             </div>
         )
