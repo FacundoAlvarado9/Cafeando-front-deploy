@@ -83,7 +83,7 @@ export default function SingleTostaduria() {
     <div className='flex flex-column'>
       <div className='flex flex-column md:flex-row gap-0 md:gap-3 justify-content-center align-items-center'>
         <div className="flex">
-          <Link to="/tostadurias"><Button icon="pi pi-chevron-left" label="Volver"/></Link>
+          <Link to="/tostadurias" className="link"><Button icon="pi pi-chevron-left" label="Volver"/></Link>
         </div>
         <div className="flex">
           <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>

@@ -3,6 +3,8 @@ import React from 'react'
 import {InputText} from 'primereact/inputtext'
 import {Button} from 'primereact/button'
 
+import './styles/search.css'
+
 class Search extends React.Component {
 
     state = {
@@ -23,7 +25,7 @@ class Search extends React.Component {
         return(
             <>
 
-            <div className="p-inputgroup">
+            <div className="p-inputgroup search-group">
                 <Button label="Buscar" icon="pi pi-search" onClick={this.handleChange}/>
                 <InputText
                     id={this.props.id} 
