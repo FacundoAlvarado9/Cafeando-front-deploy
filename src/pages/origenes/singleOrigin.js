@@ -11,6 +11,7 @@ import TostaduriaDropdown from 'components/TostaduriasDropdown'
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
 import TiposDropdown from 'components/TiposDropdown'
+import Loading from 'components/Loading'
 
 export default function SingleOrigin() {
   
@@ -28,23 +29,33 @@ export default function SingleOrigin() {
   })
 
   const [errored, setErrored] = useState(false)
+  const [loadingOrigenInfo, setLoadingOrigenInfo] = useState(true)
+  const [loadingVariedades, setLoadingVariedades] = useState(true)
 
   const { origen_id }= useParams()
 
-  useEffect(() => {         
+  useEffect(() => {
+    setLoadingOrigenInfo(true)
+
     getSingleOrigin(origen_id).then(res => {
-      setOrigen(res.data["results"][0])      
+      setOrigen(res.data["results"][0])
+      setLoadingOrigenInfo(false)
     }).catch((error) => {
       setErrored(true)
+      setLoadingOrigenInfo(false)
     })
   }, [origen_id])
 
-  useEffect(() => {         
+  useEffect(() => {
+    setLoadingVariedades(true)
+    
     getVariedadesFromOrigen(origen_id, filters).then(resVariedades => {
       setVariedades(resVariedades.data["results"])
       setTotalCount(resVariedades.data["totalCount"])
+      setLoadingVariedades(false)
     }).catch((error) => {
       setErrored(true)
+      setLoadingVariedades(false)
     })
   }, [origen_id, filters])
 
@@ -94,15 +105,17 @@ export default function SingleOrigin() {
           <div className="flex">
             <TiposDropdown onChange={changeTipoFilter} />
           </div>
-        </div>
-        <VariedadGrid variedades={variedades} 
-            titulo={ origen["nombre"] } 
-            descripcion={origen["descripcion"]}
-            startIndex={filters["startIndex"]}
-            pageSize={filters["pageSize"]}
-            totalCount={totalCount}
-            onPageChange={handlePageClick}
-            />                  
+        </div> 
+          <VariedadGrid variedades={variedades} 
+              titulo={ origen["nombre"] } 
+              descripcion={origen["descripcion"]}
+              startIndex={filters["startIndex"]}
+              pageSize={filters["pageSize"]}
+              totalCount={totalCount}
+              onPageChange={handlePageClick}
+              loadingTitle={loadingOrigenInfo}
+              loadingVariedades={loadingVariedades}
+              />
       </div> 
     </>
     

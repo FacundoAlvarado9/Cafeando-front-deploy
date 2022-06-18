@@ -7,6 +7,7 @@ import { Paginator } from 'primereact/paginator';
 import Search from 'components/Search'
 import Error from 'components/Error';
 import NoResults from 'components/NoResults';
+import Loading from 'components/Loading';
 
 export default function Origenes(){
 
@@ -18,13 +19,17 @@ export default function Origenes(){
     searchString: ""
   })
   const [errored, setErrored] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setLoading(true)
     getAllOrigenes(filters).then(res => {
       setOrigenes(res.data.results)
       setTotalCount(res.data["totalCount"])
+      setLoading(false)
     }).catch((error) => {
       setErrored(true)
+      setLoading(false)
     })
   }, [filters])
 
@@ -49,10 +54,12 @@ export default function Origenes(){
           <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
         </div>
         <div className='grid flex flex-column gap-3 justify-content-center'>
-          {origenes.length === 0 ? (<NoResults />) : origenes.map(origen => <OrigenCard id={origen.id} key={origen.id} origen={origen}/>)}        
+          {loading ? (<Loading />) : 
+          (origenes.length === 0 ? (<NoResults />) : origenes.map(origen => <OrigenCard id={origen.id} key={origen.id} origen={origen}/>))
+          }
         </div>
         <div className='flex justify-content-center'>
-          <Paginator first={filters["startIndex"]} rows={filters["pageSize"]} totalRecords={totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={handlePageClick}></Paginator>
+          <Paginator first={filters["startIndex"]} rows={filters["pageSize"]} totalRecords={totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={handlePageClick}/>
         </div>
       </div> 
   </>

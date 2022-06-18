@@ -6,6 +6,7 @@ import { getSingleTostaduria, getSucursalesFromSingleTostaduria } from 'network/
 
 import { Button } from 'primereact/button'
 
+import Loading from 'components/Loading'
 import Search from 'components/Search'
 import OrigenesDropdown from 'components/OrigenesDropdown'
 import SucursalCard from 'components/cards/SucursalCard'
@@ -28,30 +29,45 @@ export default function SingleTostaduria() {
     origen: null,
     tipo: null
   })
+
+  const [loadingTostInfo, setLoadingTostInfo] = useState(true)
+  const [loadingVariedades, setLoadingVariedades] = useState(true)
+  const [loadingSucursales, setLoadingSucursales] = useState(true)
   const [errored, setErrored] = useState(false)
 
   const { tost_id }= useParams()
 
   useEffect(() => {
+    setLoadingTostInfo(true)
+    setLoadingSucursales(true)
+
     getSingleTostaduria(tost_id).then(res => {
       setTostaduria(res.data["results"][0])
+      setLoadingTostInfo(false)
     }).catch((error) => {
       setErrored(true)
+      setLoadingTostInfo(false)
     })
 
     getSucursalesFromSingleTostaduria(tost_id).then(res => {
       setSucursales(res.data["results"])
+      setLoadingSucursales(false)
     }).catch((error) => {
       setErrored(true)
+      setLoadingSucursales(false)
     })
   }, [tost_id])
 
-  useEffect(() => {         
+  useEffect(() => {
+    setLoadingVariedades(true)
+    
     getVariedadesFromTostaduria(tost_id, filters).then(resVariedades => {
       setVariedades(resVariedades.data["results"])
       setTotalCount(resVariedades.data["totalCount"])
+      setLoadingVariedades(false)
     }).catch((error) => {
       setErrored(true)
+      setLoadingVariedades(false)
     })
   }, [filters, tost_id])
 
@@ -102,20 +118,23 @@ export default function SingleTostaduria() {
             <TiposDropdown onChange={changeTipoFilter} />
           </div>   
         </div>
-
-          <VariedadGrid variedades={variedades}
-                titulo={ tostaduria["nombre"] }
-                startIndex={ filters["startIndex"] }
-                pageSize={ filters["pageSize"] }
-                totalCount={totalCount}
-                onPageChange={handlePageClick}
-          />
+            <VariedadGrid variedades={variedades}
+                  titulo={ tostaduria["nombre"] }
+                  startIndex={ filters["startIndex"] }
+                  pageSize={ filters["pageSize"] }
+                  totalCount={totalCount}
+                  onPageChange={handlePageClick}
+                  loadingTitle={loadingTostInfo}
+                  loadingVariedades={loadingVariedades}
+            />
         <div className='flex flex-column'>
           <h2>Sucursales</h2>
           <div className="grid gap-3 justify-content-center">
-              {sucursales.map(sucursal => {          
-                return <SucursalCard sucursal={sucursal} key={sucursal["id"]}/>
-              })}
+              {loadingSucursales ? (<Loading />) : 
+                sucursales.map(sucursal => {          
+                  return <SucursalCard sucursal={sucursal} key={sucursal["id"]}/>
+                })
+              }
           </div> 
         </div>       
       </div>
