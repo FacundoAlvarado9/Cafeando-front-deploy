@@ -1,23 +1,19 @@
 import React, {useState, useEffect} from 'react'
 import { useParams, Link } from 'react-router-dom'
 
-import { getVariedadesFromTostaduria } from "network/lib/variedades"
-import VariedadCard from 'components/cards/VariedadCard'
+import { getAllVariedades} from "network/lib/variedades"
 import Search from 'components/Search'
-import { getSingleTostaduria, getSucursalesFromSingleTostaduria } from 'network/lib/tostadurias'
 import OrigenesDropdown from 'components/OrigenesDropdown'
 
 import { Button } from 'primereact/button'
-import SucursalCard from 'components/cards/SucursalCard'
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
+import TostaduriaDropdown from 'components/TostaduriasDropdown'
 import TiposDropdown from 'components/TiposDropdown'
 
-export default function SingleTostaduria() {
+export default function Variedades() {
   
-  const [tostaduria, setTostaduria] = useState([])
   const [variedades, setVariedades] = useState([])
-  const [sucursales, setSucursales] = useState([])
 
   const [totalCount, setTotalCount] = useState(0)
 
@@ -26,34 +22,19 @@ export default function SingleTostaduria() {
     startIndex: 0,
     searchString: "",
     origen: null,
+    tostaduria: null,
     tipo: null
   })
   const [errored, setErrored] = useState(false)
 
-  const { tost_id }= useParams()
-
-  useEffect(() => {
-    getSingleTostaduria(tost_id).then(res => {
-      setTostaduria(res.data["results"][0])
-    }).catch((error) => {
-      setErrored(true)
-    })
-
-    getSucursalesFromSingleTostaduria(tost_id).then(res => {
-      setSucursales(res.data["results"])
-    }).catch((error) => {
-      setErrored(true)
-    })
-  }, [tost_id])
-
   useEffect(() => {         
-    getVariedadesFromTostaduria(tost_id, filters).then(resVariedades => {
+    getAllVariedades(filters).then(resVariedades => {
       setVariedades(resVariedades.data["results"])
       setTotalCount(resVariedades.data["totalCount"])
     }).catch((error) => {
       setErrored(true)
     })
-  }, [filters, tost_id])
+  }, [filters])
 
   const handlePageClick = (event) => {
     setFilters({
@@ -77,6 +58,13 @@ export default function SingleTostaduria() {
     }))
   }
 
+  const changeTostaduriaFilter = (newTostaduria) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      tostaduria: newTostaduria
+    }))
+  }
+
   const changeTipoFilter = (newTipo) => {
     setFilters(prevFilters => ({
       ...prevFilters,
@@ -84,11 +72,11 @@ export default function SingleTostaduria() {
     }))
   }
 
-  const mostrarVariedadesTostaduria = <>
+  const mostrarVariedades = <>
       <div className='flex flex-column'>
         <div className='flex flex-column md:flex-row gap-0 md:gap-3 justify-content-center align-items-center'>
           <div className="flex">
-            <Link to="/tostadurias" className="link"><Button icon="pi pi-chevron-left" label="Volver"/></Link>
+            <Link to="/" className="link"><Button icon="pi pi-chevron-left" label="Volver"/></Link>
           </div>
           <div className="flex">
             <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
@@ -97,34 +85,29 @@ export default function SingleTostaduria() {
             <OrigenesDropdown onChange={changeOrigenFilter} />
           </div>
           <div className="flex">
+            <TostaduriaDropdown onChange={changeTostaduriaFilter} />
+          </div>
+          <div className="flex">
             <TiposDropdown onChange={changeTipoFilter} />
           </div>   
         </div>
 
           <VariedadGrid variedades={variedades}
-                titulo={ tostaduria["nombre"] }
+                titulo="Todas las variedades"
                 startIndex={ filters["startIndex"] }
                 pageSize={ filters["pageSize"] }
                 totalCount={totalCount}
                 onPageChange={handlePageClick}
-          />
-        <div className='flex flex-column'>
-          <h2>Sucursales</h2>
-          <div className="grid gap-3 justify-content-center">
-              {sucursales.map(sucursal => {          
-                return <SucursalCard sucursal={sucursal} key={sucursal["id"]}/>
-              })}
-          </div> 
-        </div>       
+          />              
       </div>
   </>
 
   let result
 
   if(!errored){
-    result = mostrarVariedadesTostaduria
+    result = mostrarVariedades
   } else {
-    result = <Error volver="/tostadurias" />
+    result = <Error volver="/" />
   }
 
 

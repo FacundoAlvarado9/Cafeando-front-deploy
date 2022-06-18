@@ -14,14 +14,17 @@ class Navbar extends React.Component {
                     <div className="links">
                         <nav className="flex nav-navbar gap-3">
                             <div className='flex'>
-                                <NavLink className="link" to="/">Home</NavLink>
+                                <NavLink className="link" to="/">Home</NavLink>                                
                             </div>
+                            <div className='flex'>
+                                <NavLink className="link" to="variedades">Variedades</NavLink> 
+                            </div>  
                             <div className='flex'>
                                 <NavLink className="link" to="tostadurias">Tostadurías</NavLink>
                             </div>
                             <div className='flex'>
                                 <NavLink className="link" to="origenes">Orígenes</NavLink> 
-                            </div>                            
+                            </div>                                                    
                         </nav>
                     </div>                    
                 </div> 

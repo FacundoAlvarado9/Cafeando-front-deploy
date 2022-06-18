@@ -11,6 +11,7 @@ import TostaduriaDropdown from 'components/TostaduriasDropdown'
 import { Paginator } from 'primereact/paginator';
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
+import TiposDropdown from 'components/TiposDropdown'
 
 export default function SingleOrigin() {
   
@@ -24,7 +25,8 @@ export default function SingleOrigin() {
     pageSize: 5,
     startIndex: 0,
     searchString: "",    
-    tostaduria: null
+    tostaduria: null,
+    tipo: null
   })
 
   const [errored, setErrored] = useState(false)
@@ -49,14 +51,6 @@ export default function SingleOrigin() {
     })
   }, [origen_id, filters])
 
-  /* const handlePageClick = (event) => {
-    const newOffset = (event.selected * filters["pageSize"]) % totalCount
-    setFilters({
-      ...filters,
-      startIndex: newOffset
-    })
-  } */
-
   const handlePageClick = (event) => {
     setFilters({
       ...filters,
@@ -79,6 +73,13 @@ export default function SingleOrigin() {
     }))
   }
 
+  const changeTipoFilter = (newTipo) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      tipo: newTipo
+    }))
+  }
+
   const showVariedades = <>
       <div className='flex flex-column'>    
         <div className='flex flex-column md:flex-row gap-0 md:gap-3 justify-content-center align-items-center'>
@@ -90,7 +91,10 @@ export default function SingleOrigin() {
           </div>
           <div className="flex">
             <TostaduriaDropdown onChange={changeTostaduriaFilter} />
-          </div>                            
+          </div>
+          <div className="flex">
+            <TiposDropdown onChange={changeTipoFilter} />
+          </div>
         </div>
         <VariedadGrid variedades={variedades} 
             titulo={ origen["nombre"] } 
@@ -102,21 +106,6 @@ export default function SingleOrigin() {
             />                  
       </div> 
     </>
-
-  const backup = <>
-    <div className='flex flex-column'>
-          <h1>{ origen["nombre"] }</h1>
-          <p>{ origen["descripcion"] }</p>
-          <div className="grid gap-3 justify-content-center">
-              {variedades.map(variedad => {          
-                return <VariedadCard variedad={variedad} key={variedad["id"]}/>
-              })}            
-          </div>
-          <div>
-            <Paginator first={filters["startIndex"]} rows={filters["pageSize"]} totalRecords={totalCount} onPageChange={handlePageClick}></Paginator>
-          </div>
-        </div> 
-  </>
     
   let result;
   if(!errored){
@@ -124,9 +113,6 @@ export default function SingleOrigin() {
   } else{
     result = <Error volver="/origenes"/>
   }
-
-  console.log("startIndex: " + filters["startIndex"])
-  console.log("pageCount: " + pageCount)
 
   return(    
     result
