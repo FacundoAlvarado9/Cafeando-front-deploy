@@ -5,6 +5,7 @@ import TostaduriaCard from 'components/cards/TostaduriaCard'
 import { Paginator } from 'primereact/paginator'
 import Search from 'components/Search'
 import Error from 'components/Error'
+import NoResults from 'components/NoResults'
 
 export default function Tostadurias(){
   const [tostadurias, setTostadurias] = useState([])
@@ -49,7 +50,7 @@ export default function Tostadurias(){
             <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
           </div>
           <div className='flex flex-column grid gap-3 justify-content-center'> 
-            {tostadurias.map(tostaduria => <TostaduriaCard id={tostaduria.id} key={tostaduria.id} nombre={tostaduria.nombre}/>)}        
+            {tostadurias.length === 0 ? (<NoResults />) : tostadurias.map(tostaduria => <TostaduriaCard id={tostaduria.id} key={tostaduria.id} nombre={tostaduria.nombre}/>)}        
           </div>
           <div className="flex justify-content-center">
             <Paginator first={filters["startIndex"]} rows={filters["pageSize"]} totalRecords={totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={handlePageClick}></Paginator>
