@@ -1,0 +1,15 @@
+.navbar {
+    height: 4em;
+    background: #FA2B00;
+    padding: 1.5em;
+}
+
+.title p {
+    color: white;
+    font-size: 1.75em;
+    font-family: 'Yeseva One', cursive;
+}
+
+.link {
+    color: white;
+}

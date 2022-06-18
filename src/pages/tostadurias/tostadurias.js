@@ -42,7 +42,7 @@ export default function Tostadurias(){
   }
 
   return(<>
-        
+  <div className="flex flex-column">
     <h1>Tostadurias 🏪</h1>
     <div className="flex flex-column">
       <div className="flex justify-content-center">
@@ -55,6 +55,7 @@ export default function Tostadurias(){
         <Paginator first={filters["startIndex"]} rows={filters["pageSize"]} totalRecords={totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={handlePageClick}></Paginator>
       </div>
     </div>
+  </div>
     
     </>)
 }
