@@ -12,7 +12,7 @@ class Home extends React.Component {
                     <h1>Remando en <strike><i>dulce de leche</i></strike> café.</h1>
                 </div>                
             </div>
-            <div className="data">
+            <div className="data data2">
                 <div className="title">
                     <h2>Conectate con las tostadurías de Argentina. Desde casa.</h2>
                 </div>
@@ -21,6 +21,17 @@ class Home extends React.Component {
                     <img src="https://cafeando-bucket.s3.sa-east-1.amazonaws.com/illustrations/man-at-home.png" alt="" />
                 </div>
             </div>
+            <div className="data">
+                <div className="title">
+                    <img src="https://cafeando-bucket.s3.sa-east-1.amazonaws.com/illustrations/italian-gesture.png" alt="" />
+                    <h2>¿Café de especialidad?</h2>
+                </div>
+                <div className="info">
+                    <p>Formalmente es el café con un puntaje de más de 80 puntos de la <a href="https://sca.coffee/">SCA</a>.</p>
+                    <p>Pero también así se le llama a la cultura de beber café <b>consciente de su cadena de producción</b>.</p>
+                    <p>Esto es, de variables como su origen, especie, tratamiento post-recolección, grado de tostado, método de preparación, etc.</p>
+                </div>
+            </div>            
         </>)
     }
 }

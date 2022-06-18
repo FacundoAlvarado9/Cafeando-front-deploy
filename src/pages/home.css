@@ -14,7 +14,7 @@
 }
 
 .main-title h1 {
-    font-size: 4vmax;
+    font-size: 4vh;
     color: white;
     display: inline;
 	padding: 0.3em 0em;
@@ -31,8 +31,7 @@
     transform: translate(-50%, -50%);
   }
 
-.data {
-    background: #FFFFE4;
+.data {    
     margin-right: -2em;
     margin-left: -2em;
     padding: 2vmax;
@@ -40,11 +39,15 @@
 
 .data h2{
     font-family: 'Oswald', sans-serif;
-    font-size: 4vmax;
+    font-size: 6vh;
 }
 
 .data p{
-    font-size: 1.5vmax;
+    font-size: 3vh;
+}
+
+.data2 {
+    background: #FFFFE4;
 }
 
 .info img {
