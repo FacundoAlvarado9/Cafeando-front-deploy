@@ -35,6 +35,10 @@
     color: white;
 }
 
+.footer a{
+    color: white;
+}
+
 .centered {
     position: absolute;
     top: 50%;

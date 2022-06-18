@@ -34,7 +34,7 @@ class Home extends React.Component {
             </div>
             <div className="footer flex flex-row gap-5   justify-content-center align-items-center">
                 <p>Creado por Facundo Alvarado para IAW @ UNS 2022</p>
-                <p>Ilustraciones de Icons8</p>
+                <p>Ilustraciones de <a href="https://icons8.com/github-students">Icons8 - GitHub Student</a></p>
             </div>          
         </>)
     }
