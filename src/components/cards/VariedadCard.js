@@ -1,17 +1,19 @@
 import React from 'react'
 
 import { Card } from 'primereact/card'
-import { Chip } from 'primereact/chip'
-import card from './card.module.css'
 import { Link } from 'react-router-dom'
+import OrigenesChips from 'components/OrigenesChips'
+
+import './card.css'
 
 class VariedadCard extends React.Component {
 
     render(){
         const header = <img src={this.props.variedad["imagen_url"]} alt="Variedad preview" />
-        const tostaduria = <Link to={"/tostadurias/" + this.props.variedad["tostaduria"]["id"]}>{this.props.variedad["tostaduria"]["nombre"]}</Link>
+        const tostaduria = <Link className='cardLink' to={"/tostadurias/" + this.props.variedad["tostaduria"]["id"]}>{this.props.variedad["tostaduria"]["nombre"]}</Link>
+        const title = <Link className='cardLink' to={"/variedades/" + this.props.variedad["id"]}>{this.props.variedad["nombre"]}</Link>
         return(
-            <Card title={this.props.variedad["nombre"]} 
+            <Card title={title} 
                     subTitle={tostaduria} 
                     id={this.props.variedad["id"]}
                     header={header}
@@ -24,13 +26,9 @@ class VariedadCard extends React.Component {
                         
                         <div className="overflow-scroll">
                             <p>{this.props.variedad["descripcion"]}</p>
-                        </div>
+                        </div>                        
 
-                        <div className="flex flex-row justify-content-center">
-                            { this.props.variedad["origenes"].map(origen =>
-                                <Link to={"/origenes/" + origen.id} key={origen.id}><Chip label={origen.nombre} /></Link>
-                            ) }
-                        </div>
+                        <OrigenesChips variedad={this.props.variedad} />
                     
                     </div>                    
 
