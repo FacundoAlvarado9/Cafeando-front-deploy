@@ -4,10 +4,6 @@ import './home.css'
 
 class Home extends React.Component {
 
-    componentDidMount(){
-        document.title = "Cafeando"
-    }
-
     render(){
         return(<>
             <div className="main">
