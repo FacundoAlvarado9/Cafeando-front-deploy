@@ -43,7 +43,7 @@ export default function Origenes(){
   }
 
   const mostrarOrigenes = <>
-      <div className="flex flex-column">
+      <div className="flex flex-column gap-3">
         <div className="flex justify-content-center">
           <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
         </div>

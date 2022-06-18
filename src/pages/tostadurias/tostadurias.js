@@ -44,7 +44,7 @@ export default function Tostadurias(){
   }
 
   const mostrarTostadurias = <>
-      <div className="flex flex-column">
+      <div className="flex flex-column gap-3">
           <div className="flex justify-content-center">
             <Search value={filters["searchString"]} onChange={changeSearchString} name="texto" placeholder="Buscar"/>
           </div>
