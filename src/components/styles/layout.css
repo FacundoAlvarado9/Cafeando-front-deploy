@@ -6,7 +6,7 @@
 
 .layout-content {
     padding: 1.5em;
-    background: #F2F2F2;
+    
     height: calc(100% - (100px + 150px));
 }
 
