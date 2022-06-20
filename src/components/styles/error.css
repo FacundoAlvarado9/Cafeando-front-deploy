@@ -1,0 +1,9 @@
+.error p{
+    font-size: 3vmax;
+    margin: 0.3em !important;
+}
+
+.error img{
+    width: 100%;
+    max-width: 40vmax;
+}

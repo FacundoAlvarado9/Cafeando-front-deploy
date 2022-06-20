@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Yeseva+One&display=swap');
+
+.layout {
+    width: 100%;
+}
+
+.layout-content {
+    padding: 1.5em;
+    
+    height: calc(100% - (100px + 150px));
+}
+
+.tost {
+    
+}
+
+main {
+    padding: 1.5em 1.5em 0em 1.5em;
+    background: #F2F2F2;
+    height: 100%;    flex: 1 1 auto;
+}
+
+main * {
+    z-index: 11;
+}
+
+h1 {
+    font-family: 'Yeseva One', cursive;
+}
+
+.title{
+    
+}
+
+.all{
+    position: absolute;
+}
+
+.link button {
+    background: #591300 !important;
+    border-color: #591300 !important;
+}

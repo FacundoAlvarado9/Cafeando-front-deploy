@@ -1,0 +1,9 @@
+.search-group {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.search-group .p-button {
+    background: #591300 !important;
+    border-color: #591300 !important;
+}

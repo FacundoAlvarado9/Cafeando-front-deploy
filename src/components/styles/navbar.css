@@ -1,0 +1,21 @@
+.navbar {
+    height: min-content;
+    background: #FA2B00;
+    padding: 0 1.5em 0em 1.5em;
+}
+
+.title p {
+    color: white;
+    font-size: 4vh;
+    font-family: 'Yeseva One', cursive;
+}
+
+.navLink {
+    color: white;
+    text-decoration: none;    
+}
+
+.links .navLink {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3vh;
+}
