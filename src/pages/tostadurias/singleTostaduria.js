@@ -13,6 +13,7 @@ import SucursalCard from 'components/cards/SucursalCard'
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
 import TiposDropdown from 'components/TiposDropdown'
+import SucursalesMap from 'components/SucursalesMap'
 
 export default function SingleTostaduria() {
   
@@ -135,8 +136,12 @@ export default function SingleTostaduria() {
                   return <SucursalCard sucursal={sucursal} key={sucursal["id"]}/>
                 })
               }
-          </div> 
-        </div>       
+          </div>
+          <div className="justify-content-center flex">
+          <SucursalesMap sucursales={sucursales}/>
+          </div>          
+        </div>                   
+
       </div>
   </>
 
