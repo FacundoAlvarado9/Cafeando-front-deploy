@@ -128,7 +128,7 @@ export default function SingleTostaduria() {
                   loadingTitle={loadingTostInfo}
                   loadingVariedades={loadingVariedades}
             />
-        <div className='flex flex-column'>
+        <div className='flex flex-column gap-5'>
           <h2>Sucursales</h2>
           <div className="grid gap-3 justify-content-center">
               {loadingSucursales ? (<Loading />) : 
@@ -138,7 +138,7 @@ export default function SingleTostaduria() {
               }
           </div>
           <div className="justify-content-center flex">
-          <SucursalesMap sucursales={sucursales}/>
+            <SucursalesMap sucursales={sucursales}/>
           </div>          
         </div>                   
 
