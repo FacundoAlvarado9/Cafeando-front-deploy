@@ -1,65 +1,65 @@
-/* import { useMemo } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-
-import './styles/map.css'
-
-export default function SucursalesMap() {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-  });
-
-  if (!isLoaded) return <div>Loading...</div>;
-  return <Map />;
-} */
-
-
-import { useEffect, useMemo, useState } from "react";
-import { GoogleMap, useLoadScript, MarkerF} from "@react-google-maps/api";
-import Geocode from "react-geocode";
+import { useEffect, useMemo, useState } from "react"
+import { GoogleMap, MarkerF, useJsApiLoader} from "@react-google-maps/api"
+import Geocode from "react-geocode"
 
 import './styles/map.css'
 
 export default function SucursalesMap(props) {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,    
-  });
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    region: "ar",
+    language: "es"
+  })
 
   const [marcadores, setMarcadores] = useState([])
   const [cargandoMarcadores, setCargandoMarcadores] = useState(true)
+  const [cargandoGeocoding, setCargandoGeocoding] = useState(true)
 
   useEffect(() => {
-    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-    Geocode.setLanguage("en");
-    Geocode.setRegion("es");
-    Geocode.setLocationType("ROOFTOP");
-    Geocode.enableDebug();
+    initializeGeocode()
+    setCargandoGeocoding(false)
+  }, [])
+
+  useEffect(() => {
+    !cargandoGeocoding &&
     props.sucursales.forEach(sucursal => {
-        console.log(sucursal.direccion + ", " + sucursal.ciudad.nombre)
-        Geocode.fromAddress(sucursal.direccion + ", " + sucursal.ciudad.nombre).then(res => {
-            let coordenadas = res.results[0].geometry.location            
-            setMarcadores(prevMarcadores => [
-                ...prevMarcadores,
-                coordenadas
-            ])       
-        }).catch()        
-    });
-  setCargandoMarcadores(false)
-  }, [props.sucursales])
+      generarMarcador(sucursal)
+    })
+    setCargandoMarcadores(false)
+  }, [props.sucursales, cargandoGeocoding])
+
+  const initializeGeocode = () => {
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+    Geocode.setLanguage("en")
+    Geocode.setRegion("es")
+    Geocode.setLocationType("ROOFTOP")
+    Geocode.enableDebug(true)
+  }
+
+  const generarMarcador = (sucursal) => {
+    Geocode.fromAddress(sucursal.direccion + ", " + sucursal.ciudad.nombre).then(res => {
+      setMarcadores(prevMarcadores => [
+        ...prevMarcadores,
+        res.results[0].geometry.location
+      ])
+    }).catch((error) => {
+      console.info("No se ha encontrado dirección en mapa para dirección: "+sucursal.direccion +", "+sucursal.ciudad.nombre)
+    })
+  }
 
   function Map() {
-    const center = useMemo(() => (marcadores[0]), []);
+    const center = useMemo(() => ({lat: -38.41, lng: -63.61}), []) //Centrado en el centro de Argentina
   
     return (<>
       <GoogleMap zoom={4} center={center} mapContainerClassName="map-container"> 
-        {console.log(marcadores[0])}
         {!cargandoMarcadores &&  marcadores.map((marcador, i) => {
             return <MarkerF key={i} position={marcador} />
         })}
       </GoogleMap>
       </>
-    );
-  }
+    )
+  }  
 
-  if (!isLoaded || cargandoMarcadores) return <div>Loading...</div>;
-  return <Map />;
+  if (!isLoaded || cargandoMarcadores) return <div>Loading...</div>
+  return <Map />
 }
