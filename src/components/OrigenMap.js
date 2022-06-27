@@ -19,7 +19,7 @@ export default function OrigenMap(props) {
     !cargandoGeocoding && !props.loading &&
     generarMarcador(props.origen)
     setCargandoMarcadores(false)
-  }, [props.origen, cargandoGeocoding])
+  }, [props.loading, props.origen, cargandoGeocoding])
 
   const initializeGeocode = () => {
     Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)

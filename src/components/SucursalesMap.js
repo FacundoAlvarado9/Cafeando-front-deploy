@@ -21,7 +21,7 @@ export default function SucursalesMap(props) {
       generarMarcador(sucursal) //genera un marcador
     })
     setCargandoMarcadores(false)
-  }, [props.sucursales, cargandoGeocoding])
+  }, [props.loading, props.sucursales, cargandoGeocoding])
 
   const initializeGeocode = () => {
     Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
