@@ -1,15 +1,10 @@
-import { useEffect, useMemo, useState } from "react"
-import { GoogleMap, MarkerF, useJsApiLoader} from "@react-google-maps/api"
+import { useEffect, useState } from "react"
 import Geocode from "react-geocode"
 
 import './styles/map.css'
+import MapWithMarkers from "./MapWithMarkers"
 
 export default function SucursalesMap(props) {
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    region: "ar",
-    language: "es"
-  })
 
   const [marcadores, setMarcadores] = useState([])
   const [cargandoMarcadores, setCargandoMarcadores] = useState(true)
@@ -22,8 +17,8 @@ export default function SucursalesMap(props) {
 
   useEffect(() => {
     !cargandoGeocoding &&
-    props.sucursales.forEach(sucursal => {
-      generarMarcador(sucursal)
+    props.sucursales.forEach(sucursal => { //Para cada sucursal
+      generarMarcador(sucursal) //genera un marcador
     })
     setCargandoMarcadores(false)
   }, [props.sucursales, cargandoGeocoding])
@@ -33,7 +28,7 @@ export default function SucursalesMap(props) {
     Geocode.setLanguage("en")
     Geocode.setRegion("es")
     Geocode.setLocationType("ROOFTOP")
-    Geocode.enableDebug(true)
+    Geocode.enableDebug(false)
   }
 
   const generarMarcador = (sucursal) => {
@@ -45,21 +40,9 @@ export default function SucursalesMap(props) {
     }).catch((error) => {
       console.info("No se ha encontrado dirección en mapa para dirección: "+sucursal.direccion +", "+sucursal.ciudad.nombre)
     })
-  }
+  }   
 
-  function Map() {
-    const center = useMemo(() => ({lat: -38.41, lng: -63.61}), []) //Centrado en el centro de Argentina
-  
-    return (<>
-      <GoogleMap zoom={4} center={center} mapContainerClassName="map-container"> 
-        {!cargandoMarcadores &&  marcadores.map((marcador, i) => {
-            return <MarkerF key={i} position={marcador} />
-        })}
-      </GoogleMap>
-      </>
-    )
-  }  
-
-  if (!isLoaded || cargandoMarcadores) return <div>Loading...</div>
-  return <Map />
+  return(<>
+    <MapWithMarkers markers={marcadores} loading={cargandoMarcadores} /> //Pasa los marcadores al componente
+  </>)
 }

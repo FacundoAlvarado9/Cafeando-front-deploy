@@ -14,6 +14,7 @@ import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
 import TiposDropdown from 'components/TiposDropdown'
 import SucursalesMap from 'components/SucursalesMap'
+import Sucursales from 'components/Sucursales'
 
 export default function SingleTostaduria() {
   
@@ -127,21 +128,9 @@ export default function SingleTostaduria() {
                   onPageChange={handlePageClick}
                   loadingTitle={loadingTostInfo}
                   loadingVariedades={loadingVariedades}
-            />
-        <div className='flex flex-column gap-5'>
-          <h2>Sucursales</h2>
-          <div className="grid gap-3 justify-content-center">
-              {loadingSucursales ? (<Loading />) : 
-                sucursales.map(sucursal => {          
-                  return <SucursalCard sucursal={sucursal} key={sucursal["id"]}/>
-                })
-              }
-          </div>
-          <div className="justify-content-center flex">
-            <SucursalesMap sucursales={sucursales}/>
-          </div>          
-        </div>                   
+            />                  
 
+            <Sucursales sucursales={sucursales} loading={loadingSucursales}/>
       </div>
   </>
 
