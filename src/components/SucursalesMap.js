@@ -16,7 +16,7 @@ export default function SucursalesMap(props) {
   }, [])
 
   useEffect(() => {
-    !cargandoGeocoding &&
+    !cargandoGeocoding && !props.loading &&
     props.sucursales.forEach(sucursal => { //Para cada sucursal
       generarMarcador(sucursal) //genera un marcador
     })
@@ -40,9 +40,11 @@ export default function SucursalesMap(props) {
     }).catch((error) => {
       console.info("No se ha encontrado dirección en mapa para dirección: "+sucursal.direccion +", "+sucursal.ciudad.nombre)
     })
-  }   
+  }
+
+  const centroArgentina = {lat: -38.41, lng: -63.61}
 
   return(<>
-    <MapWithMarkers markers={marcadores} loading={cargandoMarcadores} /> {/* Pasa los marcadores al componente */}
+    <MapWithMarkers markers={marcadores} center={centroArgentina} loading={cargandoMarcadores} /> {/* Pasa los marcadores al componente */}
   </>)
 }

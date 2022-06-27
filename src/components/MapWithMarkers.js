@@ -10,7 +10,7 @@ export default function MapWithMarkers(props) {
     })
 
     function Map() {
-        const center = useMemo(() => ({lat: -38.41, lng: -63.61}), []) //Centrado en el centro de Argentina
+        const center = useMemo(() => (props.center), [])
         
         return (<>
             <GoogleMap zoom={4} center={center} mapContainerClassName="map-container"> 

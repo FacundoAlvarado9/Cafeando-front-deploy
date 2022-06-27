@@ -14,7 +14,7 @@ export default function Sucursales(props) {
               }
           </div>
           <div className="justify-content-center flex">
-            <SucursalesMap sucursales={props.sucursales}/>
+            <SucursalesMap sucursales={props.sucursales} loading={props.loading}/>
           </div>          
         </div> 
   </>)
