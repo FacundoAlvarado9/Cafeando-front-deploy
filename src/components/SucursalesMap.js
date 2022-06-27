@@ -45,6 +45,6 @@ export default function SucursalesMap(props) {
   const centroArgentina = {lat: -38.41, lng: -63.61}
 
   return(<>
-    <MapWithMarkers markers={marcadores} center={centroArgentina} loading={cargandoMarcadores} /> {/* Pasa los marcadores al componente */}
+    <MapWithMarkers markers={marcadores} center={centroArgentina} loading={cargandoMarcadores} zoom={4}/> {/* Pasa los marcadores al componente */}
   </>)
 }

@@ -13,7 +13,7 @@ export default function MapWithMarkers(props) {
         const center = useMemo(() => (props.center), [])
         
         return (<>
-            <GoogleMap zoom={4} center={center} mapContainerClassName="map-container"> 
+            <GoogleMap zoom={props.zoom} center={center} mapContainerClassName="map-container"> 
             {!props.loading && props.markers.map((marcador, i) => {
                 return <MarkerF key={i} position={marcador} />
             })}

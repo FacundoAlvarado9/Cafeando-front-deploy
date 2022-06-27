@@ -38,6 +38,6 @@ export default function OrigenMap(props) {
   }   
 
   return(<>
-    <MapWithMarkers markers={marcador} center={marcador[0]} loading={cargandoMarcadores} /> {/* Pasa los marcadores al componente */}
+    <MapWithMarkers markers={marcador} center={marcador[0]} loading={cargandoMarcadores} zoom={3} /> {/* Pasa los marcadores al componente */}
   </>)
 }
