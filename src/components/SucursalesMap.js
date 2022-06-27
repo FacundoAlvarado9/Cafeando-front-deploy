@@ -43,6 +43,6 @@ export default function SucursalesMap(props) {
   }   
 
   return(<>
-    <MapWithMarkers markers={marcadores} loading={cargandoMarcadores} /> //Pasa los marcadores al componente
+    <MapWithMarkers markers={marcadores} loading={cargandoMarcadores} /> {/* Pasa los marcadores al componente */}
   </>)
 }

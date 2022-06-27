@@ -6,14 +6,11 @@ import { getSingleTostaduria, getSucursalesFromSingleTostaduria } from 'network/
 
 import { Button } from 'primereact/button'
 
-import Loading from 'components/Loading'
 import Search from 'components/Search'
 import OrigenesDropdown from 'components/OrigenesDropdown'
-import SucursalCard from 'components/cards/SucursalCard'
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
 import TiposDropdown from 'components/TiposDropdown'
-import SucursalesMap from 'components/SucursalesMap'
 import Sucursales from 'components/Sucursales'
 
 export default function SingleTostaduria() {
