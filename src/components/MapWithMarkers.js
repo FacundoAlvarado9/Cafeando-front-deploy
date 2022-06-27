@@ -1,9 +1,9 @@
 import { useMemo } from "react"
-import { GoogleMap, MarkerF, useJsApiLoader} from "@react-google-maps/api"
+import { GoogleMap, MarkerF, useLoadScript} from "@react-google-maps/api"
 
 export default function MapWithMarkers(props) {
 
-    const { isLoaded } = useJsApiLoader({
+    const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         region: "ar",
         language: "es"
