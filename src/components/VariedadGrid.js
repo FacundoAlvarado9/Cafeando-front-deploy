@@ -27,9 +27,11 @@ class VariedadGrid extends React.Component {
                         (this.props.variedades.length === 0 ? (<NoResults />) : renderVariedades(this.props.variedades))
                     }
                 </div>
-                <div className='flex justify-content-center'>
-                    <Paginator  first={this.props.startIndex} rows={this.props.pageSize} totalRecords={this.props.totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={this.props.onPageChange}></Paginator>
-                </div>
+                {(this.props.totalCount > this.props.pageSize) ? (
+                    <div className='flex justify-content-center'>
+                        <Paginator  first={this.props.startIndex} rows={this.props.pageSize} totalRecords={this.props.totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={this.props.onPageChange}></Paginator>
+                    </div>)
+                : (<></>)}
             </div>
         )
     }

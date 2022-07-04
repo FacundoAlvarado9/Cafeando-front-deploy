@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { getAllVariedades} from "network/lib/variedades"
 import Search from 'components/Search'
@@ -10,6 +10,7 @@ import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
 import TostaduriaDropdown from 'components/TostaduriasDropdown'
 import TiposDropdown from 'components/TiposDropdown'
+import Loading from 'components/Loading'
 
 export default function Variedades() {
   
@@ -26,13 +27,16 @@ export default function Variedades() {
     tipo: null
   })
   const [errored, setErrored] = useState(false)
+  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {         
+  useEffect(() => {    
     getAllVariedades(filters).then(resVariedades => {
       setVariedades(resVariedades.data["results"])
       setTotalCount(resVariedades.data["totalCount"])
+      setLoading(false)
     }).catch((error) => {
       setErrored(true)
+      setLoading(false)
     })
   }, [filters])
 
@@ -91,14 +95,15 @@ export default function Variedades() {
             <TiposDropdown onChange={changeTipoFilter} />
           </div>   
         </div>
-
-          <VariedadGrid variedades={variedades}
-                titulo="Todas las variedades"
-                startIndex={ filters["startIndex"] }
-                pageSize={ filters["pageSize"] }
-                totalCount={totalCount}
-                onPageChange={handlePageClick}
-          />              
+          {loading ? (<Loading />) : (
+            <VariedadGrid variedades={variedades}
+                  titulo="Todas las variedades"
+                  startIndex={ filters["startIndex"] }
+                  pageSize={ filters["pageSize"] }
+                  totalCount={totalCount}
+                  onPageChange={handlePageClick}
+            />
+          )}
       </div>
   </>
 

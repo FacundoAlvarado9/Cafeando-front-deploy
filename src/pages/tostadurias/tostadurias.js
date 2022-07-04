@@ -57,9 +57,11 @@ export default function Tostadurias(){
             <div className='flex flex-column grid gap-3 justify-content-center'> 
               {tostadurias.length === 0 ? (<NoResults />) : tostadurias.map(tostaduria => <TostaduriaCard id={tostaduria.id} key={tostaduria.id} nombre={tostaduria.nombre}/>)}        
             </div>
-            <div className="flex justify-content-center">
-              <Paginator first={filters["startIndex"]} rows={filters["pageSize"]} totalRecords={totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={handlePageClick}/>
-            </div>
+            {(totalCount > filters["pageSize"]) ? (
+              <div className="flex justify-content-center">
+                <Paginator first={filters["startIndex"]} rows={filters["pageSize"]} totalRecords={totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={handlePageClick}/>
+              </div>
+            ) : (<></>)}
           </>
           }
       </div>

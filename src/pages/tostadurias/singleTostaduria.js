@@ -6,13 +6,12 @@ import { getSingleTostaduria, getSucursalesFromSingleTostaduria } from 'network/
 
 import { Button } from 'primereact/button'
 
-import Loading from 'components/Loading'
 import Search from 'components/Search'
 import OrigenesDropdown from 'components/OrigenesDropdown'
-import SucursalCard from 'components/cards/SucursalCard'
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
 import TiposDropdown from 'components/TiposDropdown'
+import Sucursales from 'components/Sucursales'
 
 export default function SingleTostaduria() {
   
@@ -126,17 +125,9 @@ export default function SingleTostaduria() {
                   onPageChange={handlePageClick}
                   loadingTitle={loadingTostInfo}
                   loadingVariedades={loadingVariedades}
-            />
-        <div className='flex flex-column'>
-          <h2>Sucursales</h2>
-          <div className="grid gap-3 justify-content-center">
-              {loadingSucursales ? (<Loading />) : 
-                sucursales.map(sucursal => {          
-                  return <SucursalCard sucursal={sucursal} key={sucursal["id"]}/>
-                })
-              }
-          </div> 
-        </div>       
+            />                  
+
+            <Sucursales sucursales={sucursales} loading={loadingSucursales}/>
       </div>
   </>
 

@@ -58,9 +58,11 @@ export default function Origenes(){
           (origenes.length === 0 ? (<NoResults />) : origenes.map(origen => <OrigenCard id={origen.id} key={origen.id} origen={origen}/>))
           }
         </div>
-        <div className='flex justify-content-center'>
-          <Paginator first={filters["startIndex"]} rows={filters["pageSize"]} totalRecords={totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={handlePageClick}/>
-        </div>
+        {(totalCount > filters["pageSize"]) ? (
+          <div className='flex justify-content-center'>
+            <Paginator first={filters["startIndex"]} rows={filters["pageSize"]} totalRecords={totalCount} rowsPerPageOptions={[2,3,5]} onPageChange={handlePageClick}/>
+          </div>
+        ) : (<></>)}
       </div> 
   </>
 

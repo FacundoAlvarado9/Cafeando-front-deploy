@@ -11,6 +11,7 @@ import TostaduriaDropdown from 'components/TostaduriasDropdown'
 import VariedadGrid from 'components/VariedadGrid'
 import Error from 'components/Error'
 import TiposDropdown from 'components/TiposDropdown'
+import OrigenMap from 'components/OrigenMap'
 
 export default function SingleOrigin() {
   
@@ -104,7 +105,7 @@ export default function SingleOrigin() {
           <div className="flex">
             <TiposDropdown onChange={changeTipoFilter} />
           </div>
-        </div> 
+        </div>
           <VariedadGrid variedades={variedades} 
               titulo={ origen["nombre"] } 
               descripcion={origen["descripcion"]}
@@ -115,6 +116,9 @@ export default function SingleOrigin() {
               loadingTitle={loadingOrigenInfo}
               loadingVariedades={loadingVariedades}
               />
+          <div className="flex justify-content-center m-5">
+            <OrigenMap origen={origen} loading={loadingOrigenInfo}/>
+          </div>          
       </div> 
     </>
     

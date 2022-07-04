@@ -15,6 +15,13 @@
     text-decoration: none;    
 }
 
+.active {
+    border-bottom: 7px solid white;
+    display: inline-block;
+    padding-bottom: 0px;
+    font-family: sans-serif;
+}
+
 .links .navLink {
     font-family: 'Oswald', sans-serif;
     font-size: 3vh;
